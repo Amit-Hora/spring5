@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaTemplate;
 
+import com.ash.springkafka.model.Sensor;
+
 @Configuration
 public class Producer {
  
@@ -19,6 +21,10 @@ public class Producer {
 		return kafkaTemplate;
 	}
 	
+	public <T> void sendData(String key,T o) {
+		this.kafkaTemplate.send("test",((Sensor) o).getId()+"",o);
+	}
+
 	
 
 }

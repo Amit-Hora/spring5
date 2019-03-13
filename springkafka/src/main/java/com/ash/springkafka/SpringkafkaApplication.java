@@ -17,7 +17,8 @@ public class SpringkafkaApplication {
 		ConfigurableApplicationContext ctx = SpringApplication.run(SpringkafkaApplication.class, args);
 		Sensor sensor = new Sensor(101,20, -30, 120);
 		Producer producer = ctx.getBean(Producer.class);
-		producer.getKafkaTemplate().send("test",sensor.getId()+"",sensor);
+		producer.sendData(sensor.getId()+"", sensor);
+//		producer.getKafkaTemplate().send("test",sensor.getId()+"",sensor);
 	}
 
 }
